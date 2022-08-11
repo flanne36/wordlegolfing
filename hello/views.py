@@ -5,10 +5,9 @@ from .models import Greeting
 
 # Create your views here.
 def index(request):
-    r = requests.get('https://httpbin.org/status/418')
-    print(r.text)
+    r = "TEST"
     print("TEST")
-    return HttpResponse('<pre>' + r.text + '</pre>')
+    return HttpResponse('<pre>' + r + '</pre>')
 
 
 def db(request):
