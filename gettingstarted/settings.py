@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "hello",
     'game',
     "accounts",
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
