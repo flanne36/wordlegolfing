@@ -58,7 +58,7 @@ def registerPage(request):
                 return redirect('accounts:login')
 
         context = {'form': form}
-        render(request, 'accounts/register.html', context)
+        return render(request, 'accounts/register.html', context)
 
 
 def logoutUser(request):
