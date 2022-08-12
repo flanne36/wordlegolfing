@@ -8,7 +8,7 @@ from game.models import ScoreBoard, Wordsdata
 
 def test(request):
     form = CreateUserForm()
-    return render(request, 'test.html')
+    return render(request, 'accounts/register.html')
 
 # Create your views here.
 def loginPage(request):
