@@ -7,6 +7,7 @@ from game.models import ScoreBoard, Wordsdata
 
 
 def test(request):
+    form = CreateUserForm()
     return render(request, 'test.html')
 
 # Create your views here.
