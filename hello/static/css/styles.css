@@ -151,21 +151,30 @@ header {
   font-weight: bold;
   border: 0;
   padding: 0;
+  margin-right: 6px;
   height: 58px;
   cursor: pointer;
-  background-color: rgb(129, 131, 132);
-  color: rgb(215, 218, 220);
-  flex-grow: 1;
-  text-transform: uppercase;
-  margin-right: 6px;
-  border-radius: 4px;
   user-select: none;
+  background-color: #818384;
+  color: #ffffff;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  border-radius: 4px;
 }
 
-
+.keyboard-row button.last-button {
+  color: #ffffff;
+}
 
 .keyboard-row button.wide-button {
-  flex-grow: 1.5;
+  flex: 1.5;
+    flex-grow: 1.5;
+    flex-shrink: 1;
+    flex-basis: 0%;
+  font-size: 12px;
 }
 
 .spacer-half {
