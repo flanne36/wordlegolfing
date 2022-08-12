@@ -6,8 +6,7 @@
 html,
 body {
   height: 100%;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
 #container {
@@ -60,7 +59,7 @@ header {
   border: 2px solid rgb(58, 58, 60);
   min-width: 60px;
   min-height: 60px;
-  font-size: 50px;
+  font-size: 2rem;
   font-weight: bold;
   color: gainsboro;
   text-transform: uppercase;
@@ -83,7 +82,7 @@ header {
 }
 
 .keyboard-row button {
-  font-family: inherit;
+  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
   font-weight: bold;
   border: 0;
   padding: 0;
