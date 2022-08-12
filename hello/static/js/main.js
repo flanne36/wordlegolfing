@@ -67,13 +67,24 @@ document.addEventListener("DOMContentLoaded", () => {
       currentWordArr.forEach((letter, index) => {
         setTimeout(() => {
           const tileColor = getTileColor(letter, index);
-
+          console.log(index);
           const letterId = firstLetterId + index;
           const letterEl = document.getElementById(String(letterId));
+          
           letterEl.classList.add("animate__flipInX");
           letterEl.style = `background-color: ${tileColor}; border-color: ${tileColor}`;
+
         }, interval * index);
       });
+
+      setTimeout(() => {
+        currentWordArr.forEach((letter, index) => {
+          const tileColor = getTileColor(letter, index);
+          const keyEl = document.getElementById(String(letter));
+          keyEl.style = `background-color: ${tileColor}; border-color: ${tileColor}`;
+        });
+      }, interval * 5);
+
 
       guessedWordCount++;
 
