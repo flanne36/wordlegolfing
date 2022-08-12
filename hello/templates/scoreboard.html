@@ -1,3 +1,10 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Player Stats {% endblock %}
+
+{% block content %}  
 
 <table class="table table-condensed table-bordered">
     <thead>
@@ -34,3 +41,4 @@
         {% endfor %}
     </tbody>
 </table>
+{% endblock %}
