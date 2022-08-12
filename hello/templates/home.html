@@ -4,15 +4,44 @@
 
 {% block title %} Wordle Golf {% endblock %}
 
-{% block content %}       
-<div id="container">
-    <div id="game">
-        <a href="{% url 'accounts:logout' %}">Logout</a>
-        <a href="{% url 'accounts:scoreboard' %}">Go To Scoreboard</a>
-        <header>
-            <h1 class="title">WORDLE GOLF</h1>
-        </header>
+{% block content %} 
+      
 
+    <header class="AppHeader-module_appHeader__1Ehyv wordle-app-header">
+        <div class="AppHeader-module_menuLeft__iErDO">
+            <button type="button" id="AppHeader-module_navButton__fB5nf" class="AppHeader-modu
+            le_icon__x7b46" aria-label="Navigation menu." tabindex="-1" onclick="window.location.href={% url 'accounts:logout' %}">
+                <svg
+                    width="34"
+                    height="34"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                    d="M8.51428 20H4.51428C3.40971 20 2.51428 19.1046 2.51428 18V6C2.51428 4.89543 3.40971 4 4.51428 4H8.51428V6H4.51428V18H8.51428V20Z"
+                    fill="#ffffff"
+                    />
+                    <path
+                    d="M13.8418 17.385L15.262 15.9768L11.3428 12.0242L20.4857 12.0242C21.038 12.0242 21.4857 11.5765 21.4857 11.0242C21.4857 10.4719 21.038 10.0242 20.4857 10.0242L11.3236 10.0242L15.304 6.0774L13.8958 4.6572L7.5049 10.9941L13.8418 17.385Z"
+                    fill="#ffffff"
+                    />
+                </svg>
+            </button>
+        </div>
+        <div class="AppHeader-module_title__6sqs-">Wordle Golf</div>
+        <div class="AppHeader-module_menuRight__jUeYn">
+            <button type="button" id="statistics-button" class="AppHeader-module_icon__x7b46" aria-label="Statistics" tabindex="-1" onclick="window.location.href={% url 'accounts:scoreboard' %}">
+                <svg xmlns="http://www.w3.org/2000/svg" height="28" viewBox="4 4 24 24" width="28" class="game-icon" data-testid="icon-statistics">
+                    <path fill="#ffffff" d="M20.6666 14.8333V5.5H11.3333V12.5H4.33325V26.5H27.6666V14.8333H20.6666ZM13.6666 7.83333H18.3333V24.1667H13.6666V7.83333ZM6.66659 14.8333H11.3333V24.1667H6.66659V14.8333ZM25.3333 24.1667H20.6666V17.1667H25.3333V24.1667Z">
+    
+                    </path>
+                </svg>
+            </button>
+        </div>
+    </header>
+<div id="container">    
+    <div id="game">
         <div id="board-container">
             <div id="board"></div>
         </div>
@@ -28,7 +57,7 @@
             <button id='u' data-key="u">u</button>
             <button id='i' data-key="i">i</button>
             <button id='o' data-key="o">o</button>
-            <button id='p' data-key="p">p</button>
+            <button id='p' class="last-button" data-key="p">p</button>
             </div>
             <div class="keyboard-row">
             <div class="spacer-half"></div>
@@ -40,7 +69,7 @@
             <button id='h' data-key="h">h</button>
             <button id='j' data-key="j">j</button>
             <button id='k' data-key="k">k</button>
-            <button id='l' data-key="l">l</button>
+            <button id='l' class="last-button" data-key="l">l</button>
             <div class="spacer-half"></div>
             </div>
             <div class="keyboard-row">
@@ -52,7 +81,7 @@
             <button id='b' data-key="b">b</button>
             <button id='n' data-key="n">n</button>
             <button id='m' data-key="m">m</button>
-            <button data-key="del" class="wide-button">Del</button>
+            <button data-key="del" class="wide-button last-button">Del</button>
             </div>
         </div>
     </div>

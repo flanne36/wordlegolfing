@@ -67,7 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
       currentWordArr.forEach((letter, index) => {
         setTimeout(() => {
           const tileColor = getTileColor(letter, index);
-          console.log(index);
           const letterId = firstLetterId + index;
           const letterEl = document.getElementById(String(letterId));
           
