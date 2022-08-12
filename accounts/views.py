@@ -5,6 +5,10 @@ from accounts.forms import CreateUserForm
 from django.contrib.auth import authenticate, login, logout
 from game.models import ScoreBoard, Wordsdata
 
+
+def test(request):
+    return render(request, 'test.html')
+
 # Create your views here.
 def loginPage(request):
     if request.user.is_authenticated:
