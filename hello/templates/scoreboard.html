@@ -24,5 +24,13 @@
             <td>Total</td>
         </tr>
     </thead>
-
+    <tbody>
+        {% for users in scores %}
+        <tr class="success text-center">
+            {% for user in users %}
+            <td>{{ user }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
