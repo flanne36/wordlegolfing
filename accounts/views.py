@@ -1,13 +1,9 @@
-from re import S
+
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from accounts.forms import CreateUserForm
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
-from game.models import ScoreBoard
-from .models import *
-
+from game.models import ScoreBoard, Wordsdata
 
 # Create your views here.
 def loginPage(request):
@@ -25,7 +21,6 @@ def loginPage(request):
                 return redirect('home')
             else:
                 messages.info(request, 'Username OR password is incorrect')
-
         context = {}
         return render(request, 'accounts/login.html', context)
 
@@ -45,7 +40,7 @@ def registerPage(request):
                 return redirect('accounts:login')
 
         context = {'form': form}
-        return render(request, 'accounts/register.html', context)
+        render(request, 'accounts/register.html', context)
 
 
 def logoutUser(request):
