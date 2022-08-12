@@ -12,6 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
   let guessedWordCount = 0;
   let words = dictionary_from_django;
 
+  let letterCorrectPosition = [];
+  let indexCorrectPosition = [];
+
   console.log(word);
 
   const keys = document.querySelectorAll(".keyboard-row button");
@@ -45,9 +48,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const isCorrectPosition = letter === letterInThatPosition;
 
     if (isCorrectPosition) {
+      letterCorrectPosition.push(letter);
+      indexCorrectPosition.push(index);
       return "rgb(83, 141, 78)";
     }
-
+    if(letterCorrectPosition.includes(letter)){
+      for(let i = 0; i < word.length; i++){
+        if(word.charAt(i) === letter && !indexCorrectPosition.includes(i)){
+          return "rgb(83, 141, 78)";
+        }
+      }
+      return "rgb(58, 58, 60)";
+    }
+    
     return "rgb(181, 159, 59)";
   }
 
@@ -109,8 +122,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentWordArr = getCurrentWordArr();
     const currentWord = currentWordArr.join("");
     const w = JSON.stringify(currentWord);
-    console.log(w);
-    console.log(guessedWordCount);
     $.ajax({
       url: "/game/stats/",
       type: "POST",
