@@ -7,7 +7,7 @@ from game.models import ScoreBoard, Wordsdata
 
 
 def test(request):
-    return render(request, 'test.html')
+    return render(request, 'scoreboard.html')
 
 # Create your views here.
 def loginPage(request):
