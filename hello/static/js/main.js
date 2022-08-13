@@ -12,9 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let guessedWordCount = 0;
   let words = dictionary_from_django;
 
-  let letterCorrectPosition = [];
-  let indexCorrectPosition = [];
-
   console.log(word);
 
   const keys = document.querySelectorAll(".keyboard-row button");
@@ -37,32 +34,55 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function getTileColor(letter, index) {
-    const isCorrectLetter = word.includes(letter);
-
-    if (!isCorrectLetter) {
-      return "rgb(58, 58, 60)";
+  function getTileColor(curWord){
+    let answer = [0,0,0,0,0];
+    let wordofday = word;
+    for(let i = 0; i < curWord.length; i++){
+      if(wordofday.charAt(i) === curWord.charAt(i)){
+        answer[i] = 2;
+        wordofday = wordofday.substring(0,i) + '_' + wordofday.substring(i+1);
+        curWord = curWord.substring(0,i) + '*' + curWord.substring(i+1);
+      }
     }
-
-    const letterInThatPosition = word.charAt(index);
-    const isCorrectPosition = letter === letterInThatPosition;
-
-    if (isCorrectPosition) {
-      letterCorrectPosition.push(letter);
-      indexCorrectPosition.push(index);
-      return "rgb(83, 141, 78)";
-    }
-    if(letterCorrectPosition.includes(letter)){
-      for(let i = 0; i < word.length; i++){
-        if(word.charAt(i) === letter && !indexCorrectPosition.includes(i)){
-          return "rgb(83, 141, 78)";
+    for(let i = 0; i < curWord.length; i++){
+      for(let j = 0; j < curWord.length; j++){
+        if(curWord.charAt(i) === wordofday.charAt(j)){
+          answer[i] = 1;
+          wordofday = wordofday.substring(0,j) + '&' + wordofday.substring(j+1);
+          j=6;
         }
       }
-      return "rgb(58, 58, 60)";
     }
-    
-    return "rgb(181, 159, 59)";
+    return answer;
   }
+
+  function getKeyColor(curWord){
+      let answer = [0,0,0,0,0];
+      let wordofday = word;
+      for(let i = 0; i < curWord.length; i++){
+        if(wordofday.charAt(i) === curWord.charAt(i)){
+          for(let j = 0; j < curWord.length; j++){
+            if(curWord.charAt(j) === wordofday.charAt(i)){
+              answer[j] = 2;
+              curWord = curWord.substring(0,j) + '*' + curWord.substring(j+1);
+            }
+          }
+        }
+      }
+      console.log(wordofday);
+      console.log(curWord);
+      console.log(answer);
+
+      for(let i = 0; i < curWord.length; i++){
+        if(wordofday.includes(curWord.charAt(i))){
+          answer[i] = 1;
+        }
+      }
+      console.log(wordofday);
+      console.log(curWord);
+      console.log(answer);
+      return answer;
+    }
 
   function handleSubmitWord() {
     const currentWordArr = getCurrentWordArr();
@@ -77,23 +97,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const firstLetterId = guessedWordCount * 5 + 1;
       const interval = 200;
+
+      const colorsChoice = getTileColor(currentWord);
+
       currentWordArr.forEach((letter, index) => {
         setTimeout(() => {
-          const tileColor = getTileColor(letter, index);
           const letterId = firstLetterId + index;
           const letterEl = document.getElementById(String(letterId));
           
           letterEl.classList.add("animate__flipInX");
-          letterEl.style = `background-color: ${tileColor}; border-color: ${tileColor}`;
-
+          if(colorsChoice[index] === 2){
+            letterEl.style = `background-color: rgb(83, 141, 78); border-color: rgb(83, 141, 78)`;
+          }else if(colorsChoice[index] === 1){
+            letterEl.style = `background-color: rgb(181, 159, 59); border-color: rgb(181, 159, 59)`;
+          }else{
+            letterEl.style = `background-color: rgb(58, 58, 60); border-color: rgb(58, 58, 60)`;
+          }
         }, interval * index);
       });
-
+      const keyColorChoice = getKeyColor(currentWord);
       setTimeout(() => {
         currentWordArr.forEach((letter, index) => {
           const tileColor = getTileColor(letter, index);
           const keyEl = document.getElementById(String(letter));
-          keyEl.style = `background-color: ${tileColor}; border-color: ${tileColor}`;
+          if(keyColorChoice[index] === 2){
+            keyEl.style = `background-color: rgb(83, 141, 78); border-color: rgb(83, 141, 78)`;
+          }else if(keyColorChoice[index] === 1){
+            keyEl.style = `background-color: rgb(181, 159, 59); border-color: rgb(181, 159, 59)`;
+          }else{
+            keyEl.style = `background-color: rgb(58, 58, 60); border-color: rgb(58, 58, 60)`;
+          }
         });
       }, interval * 5);
 
@@ -158,7 +191,6 @@ document.addEventListener("DOMContentLoaded", () => {
   for (let i = 0; i < keys.length; i++) {
     keys[i].onclick = ({ target }) => {
       const letter = target.getAttribute("data-key");
-
       if (letter === "enter") {
         handleSubmitWord();
         return;
