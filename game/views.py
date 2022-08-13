@@ -124,10 +124,7 @@ def stats(request):
 
 def lookup_score(user):
     try:
-        start = datetime.datetime(2022, 8, 1,0,0,0)
-        today = datetime.datetime.now()
-        day = (today - start).days
-        score = ScoreBoard.objects.all().filter(user=user, startday=day).get()
+        score = ScoreBoard.objects.all().filter(user=user).get()
         return score
     except ObjectDoesNotExist:
         return None
