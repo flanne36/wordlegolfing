@@ -4,6 +4,7 @@ from django.contrib import messages
 from accounts.forms import CreateUserForm
 from django.contrib.auth import authenticate, login, logout
 from game.models import ScoreBoard, Wordsdata
+import datetime
 
 
 def test(request):
