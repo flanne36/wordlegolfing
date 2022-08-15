@@ -12,6 +12,13 @@ class Wordsdata(models.Model):
 class ScoreBoard(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     startday = models.IntegerField(default=0)
+    day = models.IntegerField(default=0)
+    guess1 = models.CharField(max_length=5, default='', blank=True)
+    guess2 = models.CharField(max_length=5, default='', blank=True)
+    guess3 = models.CharField(max_length=5, default='', blank=True)
+    guess4 = models.CharField(max_length=5, default='', blank=True)
+    guess5 = models.CharField(max_length=5, default='', blank=True)
+    guess6 = models.CharField(max_length=5, default='', blank=True)
     totalscore = models.IntegerField(default=0)
     day1 = models.CharField(default='-', max_length=5)
     day2 = models.CharField(default='-', max_length=5)
@@ -32,22 +39,6 @@ class ScoreBoard(models.Model):
     day17 = models.CharField(default='-', max_length=5)
     day18 = models.CharField(default='-', max_length=5)
 
-    # day1 = models.IntegerField(default=0)
-    # day2 = models.IntegerField(default=0)
-    # day3 = models.IntegerField(default=0)
-    # day4 = models.IntegerField(default=0)
-    # day5 = models.IntegerField(default=0)
-    # day6 = models.IntegerField(default=0)
-    # day7 = models.IntegerField(default=0)
-    # day8 = models.IntegerField(default=0)
-    # day9 = models.IntegerField(default=0)
-    # day10 = models.IntegerField(default=0)
-    # day11 = models.IntegerField(default=0)
-    # day12 = models.IntegerField(default=0)
-    # day13 = models.IntegerField(default=0)
-    # day14 = models.IntegerField(default=0)
-    # day15 = models.IntegerField(default=0)
-    # day16 = models.IntegerField(default=0)
-    # day17 = models.IntegerField(default=0)
-    # day18 = models.IntegerField(default=0)
+    def __str__(self):
+        return self.user.username
 

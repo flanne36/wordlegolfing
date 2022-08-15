@@ -3,18 +3,88 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   createSquares();
-  // getNewWord();
 
   let guessedWords = [[]];
   let availableSpace = 1;
+  let guessedWordCount = 0;
 
   let word = data_from_django;
-  let guessedWordCount = 0;
   let words = dictionary_from_django;
+  let djangoGuessedWords = guessed_words_from_django;
+
+  addDjangoGuessedWords();
 
   console.log(word);
+  console.log(djangoGuessedWords);
+  console.log(guessedWords);
+  console.log(availableSpace);
+  console.log(guessedWordCount);
 
   const keys = document.querySelectorAll(".keyboard-row button");
+
+  function addDjangoGuessedWords() {
+    for(let i = 0; i < djangoGuessedWords.length; i++) {
+      let wordArr = Array.from(djangoGuessedWords[i]);
+      for(let j = 0; j < wordArr.length; j++) {
+        updateGuessedWords(wordArr[j]);
+      }
+      handleDjangoWord();
+    }
+  }
+
+  function handleDjangoWord() {
+    const currentWordArr = getCurrentWordArr();
+    const currentWord = currentWordArr.join("");
+
+    const firstLetterId = guessedWordCount * 5 + 1;
+    const interval = 200;
+
+    const colorsChoice = getTileColor(currentWord);
+
+    currentWordArr.forEach((letter, index) => {
+      setTimeout(() => {
+        const letterId = firstLetterId + index;
+        const letterEl = document.getElementById(String(letterId));
+        
+        letterEl.classList.add("animate__flipInX");
+        if(colorsChoice[index] === 2){
+          letterEl.style = `background-color: rgb(83, 141, 78); border-color: rgb(83, 141, 78)`;
+        }else if(colorsChoice[index] === 1){
+          letterEl.style = `background-color: rgb(181, 159, 59); border-color: rgb(181, 159, 59)`;
+        }else{
+          letterEl.style = `background-color: rgb(58, 58, 60); border-color: rgb(58, 58, 60)`;
+        }
+      }, interval * index);
+    });
+    const keyColorChoice = getKeyColor(currentWord);
+    setTimeout(() => {
+      currentWordArr.forEach((letter, index) => {
+        const tileColor = getTileColor(letter, index);
+        const keyEl = document.getElementById(String(letter));
+        if(keyColorChoice[index] === 2){
+          keyEl.style = `background-color: rgb(83, 141, 78); border-color: rgb(83, 141, 78)`;
+        }else if(keyColorChoice[index] === 1){
+          keyEl.style = `background-color: rgb(181, 159, 59); border-color: rgb(181, 159, 59)`;
+        }else{
+          keyEl.style = `background-color: rgb(58, 58, 60); border-color: rgb(58, 58, 60)`;
+        }
+      });
+    }, interval * 5);
+
+
+    guessedWordCount++;
+
+    if (currentWord === word) {
+      console.log("You guessed the word!");
+    }
+    
+    if (guessedWords.length === 6) {
+      window.alert(`You lost! The word is ${word}.`);
+      guessedWordCount++;
+    }
+
+    guessedWords.push([]);
+  }
 
   function getCurrentWordArr() {
     const numberOfGuessedWords = guessedWords.length;
@@ -69,18 +139,12 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
       }
-      console.log(wordofday);
-      console.log(curWord);
-      console.log(answer);
 
       for(let i = 0; i < curWord.length; i++){
         if(wordofday.includes(curWord.charAt(i))){
           answer[i] = 1;
         }
       }
-      console.log(wordofday);
-      console.log(curWord);
-      console.log(answer);
       return answer;
     }
 
@@ -134,27 +198,40 @@ document.addEventListener("DOMContentLoaded", () => {
       guessedWordCount++;
 
       if (currentWord === word) {
-       // window.alert("You guessed the word!");
+        window.alert("You guessed the word!");
         console.log("You guessed the word!");
         saveCorrectAnswer();
+        saveGuess();
       }
       
       if (guessedWords.length === 6) {
         window.alert(`You lost! The word is ${word}.`);
         guessedWordCount++;
         saveCorrectAnswer();
+        saveGuess();
       }
 
+      saveGuess();
       guessedWords.push([]);
+      
+
     } else {
       window.alert("Word not in list");
     }
   }
 
-  function saveCorrectAnswer() {
+  function saveGuess(){
     const currentWordArr = getCurrentWordArr();
     const currentWord = currentWordArr.join("");
     const w = JSON.stringify(currentWord);
+    $.ajax({
+      url: '/game/saveguess/',
+      type: 'POST',
+      data: w
+    });
+  }
+
+  function saveCorrectAnswer() {
     $.ajax({
       url: "/game/stats/",
       type: "POST",
@@ -193,6 +270,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const letter = target.getAttribute("data-key");
       if (letter === "enter") {
         handleSubmitWord();
+
+        console.log(guessedWords);
+        console.log(availableSpace);
+        console.log(guessedWordCount);
         return;
       }
 

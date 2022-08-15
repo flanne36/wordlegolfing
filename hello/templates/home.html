@@ -93,6 +93,7 @@
 <script type="text/javascript">
     data_from_django = {{ todays_word|safe }};
     dictionary_from_django = {{ word_dictionary|safe }};
+    guessed_words_from_django = {{ guessed_words|safe }};
 </script>
 
 <script src="{% static 'js/main.js' %}"></script>
