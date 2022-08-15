@@ -203,10 +203,10 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("You guessed the word!");
       }
       
-      if (guessedWords.length === 6) {
-        window.alert(`You lost! The word is ${word}.`);
+      if (guessedWords.length === 6 && currentWord !== word) {
         guessedWordCount++;
         saveCorrectAnswer();
+        window.alert(`You lost! The word is ${word}.`);
       }
 
       saveGuess();
