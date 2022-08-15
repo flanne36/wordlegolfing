@@ -29,7 +29,7 @@ def home(request):
     guessed_words = []
     getscores = lookup_score(request.user)
     if getscores is not None:
-        if getscores.day == todays_index:
+        if getscores.day == (todays_index - getscores.startday):
             if getscores.guess1 != '':
                 guessed_words.append(getscores.guess1)
             if getscores.guess2 != '':
@@ -74,11 +74,11 @@ def stats(request):
         saveScore.totalscore = int(score) - 4
         saveScore.save()
     else:
-        startday = (today - start).days - saveScore.startday
-        day = (today - start).days
+        day = saveScore.day
         print(day)
-        match startday:
+        match day:
             case 0:
+                print('test')
                 saveScore.day1 = int(score) - 4
                 saveScore.totalscore = saveScore.totalscore + saveScore.day1
                 saveScore.day = day
@@ -190,12 +190,12 @@ def saveguess(request):
     if saveguess is None:
         saveguess = ScoreBoard()
         saveguess.user = request.user
-        saveguess.day = (today - start).days
+        saveguess.day = 0
         saveguess.startday = (today - start).days
         saveguess.guess1 = word
         saveguess.save()
     else:
-        saveguess.day = (today - start).days
+        saveguess.day = (today - start).days - saveguess.startday
         saveguess.save()
         if saveguess.guess1 == '':
             saveguess.guess1 = word

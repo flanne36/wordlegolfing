@@ -198,17 +198,15 @@ document.addEventListener("DOMContentLoaded", () => {
       guessedWordCount++;
 
       if (currentWord === word) {
+        saveCorrectAnswer();
         window.alert("You guessed the word!");
         console.log("You guessed the word!");
-        saveCorrectAnswer();
-        saveGuess();
       }
       
       if (guessedWords.length === 6) {
         window.alert(`You lost! The word is ${word}.`);
         guessedWordCount++;
         saveCorrectAnswer();
-        saveGuess();
       }
 
       saveGuess();
