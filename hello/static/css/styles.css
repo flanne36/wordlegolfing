@@ -1,7 +1,7 @@
-* {
+/* * {
   margin: 0;
   padding: 0;
-}
+} */
 
 .AppHeader-module_appHeader__1Ehyv {
   display: flex;
@@ -113,20 +113,45 @@ header {
   grid-gap: 5px;
   padding: 10px;
   box-sizing: border-box;
+  width: 350px;
+  height: 420px
 }
 
-.square {
+.square[data-state = empty]{
   border: 2px solid rgb(58, 58, 60);
+}
+
+.square[data-state = tbd] {
+  background-color: 121213;
+  border: 2px solid #565758;
+  color: #ffffff;
+}
+
+.square {    
   min-width: 60px;
   min-height: 60px;
   font-size: 2rem;
   font-weight: bold;
   color: gainsboro;
   text-transform: uppercase;
-
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media (max-width: 600px) {
+} 
+@media (max-height: 685px) {
+  .square {
+    font-size: 1em;
+    line-height: 1em;
+    min-width: 32.2px;
+    min-height: 32.5px;
+  }
+  #board{
+    width: 42vh;
+    height: 50vh;
+  }
 }
 
 #keyboard-container {

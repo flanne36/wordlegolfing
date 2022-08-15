@@ -101,6 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       availableSpace = availableSpace + 1;
       availableSpaceEl.textContent = letter;
+      availableSpaceEl.setAttribute("data-state", "tbd");
     }
   }
 
@@ -245,6 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
       square.classList.add("square");
       square.classList.add("animate__animated");
       square.setAttribute("id", index + 1);
+      square.setAttribute("data-state", "empty");
       gameBoard.appendChild(square);
     }
   }
@@ -260,6 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       lastLetterEl.textContent = "";
       availableSpace = availableSpace - 1;
+      lastLetterEl.setAttribute("data-state", "empty");
     }
   }
 
