@@ -54,7 +54,7 @@ def logoutUser(request):
 
 
 def scoreboard(request):
-    django_scores = ScoreBoard.objects.all()
+    django_scores = ScoreBoard.objects.all().order_by('totalscore')
     scores = []
     for score in django_scores:
         scores.append(
