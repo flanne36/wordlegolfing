@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let words = dictionary_from_django;
   let djangoGuessedWords = guessed_words_from_django;
 
+  const messageDisplay = document.querySelector('.message-container')
+
   addDjangoGuessedWords();
 
   console.log(word);
@@ -75,11 +77,11 @@ document.addEventListener("DOMContentLoaded", () => {
     guessedWordCount++;
 
     if (currentWord === word) {
-      console.log("You guessed the word!");
+      showMessage("You guessed the word!");
     }
     
     if (guessedWords.length === 6) {
-      window.alert(`You lost! The word is ${word}.`);
+      showMessage(`You lost! The word is ${word}.`);
       guessedWordCount++;
     }
 
@@ -152,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function handleSubmitWord() {
     const currentWordArr = getCurrentWordArr();
     if (currentWordArr.length !== 5) {
-      window.alert("Word must be 5 letters");
+      showMessage("Not enough letters!");
     }
 
     const currentWord = currentWordArr.join("");
@@ -200,14 +202,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (currentWord === word) {
         saveCorrectAnswer();
-        window.alert("You guessed the word!");
-        console.log("You guessed the word!");
+        showMessage("You guessed the word!");
       }
       
       if (guessedWords.length === 6 && currentWord !== word) {
         guessedWordCount++;
         saveCorrectAnswer();
-        window.alert(`You lost! The word is ${word}.`);
+        showMessage(`You lost! The word is ${word}.`);
       }
 
       saveGuess();
@@ -215,8 +216,15 @@ document.addEventListener("DOMContentLoaded", () => {
       
 
     } else {
-      window.alert("Word not in list");
+      showMessage("Not in word list");
     }
+  }
+
+  const showMessage = (message) => {
+    const messageEl = document.createElement("p");
+    messageEl.textContent = message;
+    messageDisplay.append(messageEl);
+    setTimeout(() => messageDisplay.removeChild(messageEl), 2000);
   }
 
   function saveGuess(){
