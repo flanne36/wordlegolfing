@@ -32,13 +32,18 @@
         <div class="AppHeader-module_title__6sqs-">Wordle Golf</div>
         <div class="AppHeader-module_menuRight__jUeYn">
             <button type="button" id="statistics-button" class="AppHeader-module_icon__x7b46" aria-label="Statistics" tabindex="-1" onclick="window.location.href={% url 'accounts:scoreboard' %}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-grid-3x3" viewBox="0 0 16 16">
+                    <path fill="#ffffff" d="M0 1.5A1.5 1.5 0 0 1 1.5 0h13A1.5 1.5 0 0 1 16 1.5v13a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13zM1.5 1a.5.5 0 0 0-.5.5V5h4V1H1.5zM5 6H1v4h4V6zm1 4h4V6H6v4zm-1 1H1v3.5a.5.5 0 0 0 .5.5H5v-4zm1 0v4h4v-4H6zm5 0v4h3.5a.5.5 0 0 0 .5-.5V11h-4zm0-1h4V6h-4v4zm0-5h4V1.5a.5.5 0 0 0-.5-.5H11v4zm-1 0V1H6v4h4z"/>
+                  </svg>
+            </button>
+            <button type="button" id="statistics-button" class="AppHeader-module_icon__x7b46" aria-label="Statistics" tabindex="-1" onclick="showStats()">
                 <svg xmlns="http://www.w3.org/2000/svg" height="28" viewBox="4 4 24 24" width="28" class="game-icon" data-testid="icon-statistics">
                     <path fill="#ffffff" d="M20.6666 14.8333V5.5H11.3333V12.5H4.33325V26.5H27.6666V14.8333H20.6666ZM13.6666 7.83333H18.3333V24.1667H13.6666V7.83333ZM6.66659 14.8333H11.3333V24.1667H6.66659V14.8333ZM25.3333 24.1667H20.6666V17.1667H25.3333V24.1667Z">
     
                     </path>
                 </svg>
             </button>
-        </div>
+        </div>   
     </header>
 <div id="container">    
     <div id="game">
@@ -89,12 +94,118 @@
             </button>
             </div>
         </div>
+        <div id="stats" style="display:none" class="Modal-module_modalOverlay__81ZCi Modal-module_enableAuth__SR682" role="button">
+            <div class="Modal-module_content__s8qUZ Modal-module_enableAuth__SR682">
+                <div data-testid="authContainer" class="Stats-module_gameStats__ZP1aW">
+                    <h1 class="Stats-module_statisticsHeading__9B0IG">Statistics</h1>
+                    <div class="Stats-module_statistics__Hke7Z">
+                        <div class="Stats-module_statisticContainer__XORTW">
+                        <div class="Stats-module_statistic__fr8JZ" id="played"></div>
+                        <div class="Stats-module_label__pLAui">Played</div>
+                    </div>
+                    <div class="Stats-module_statisticContainer__XORTW">
+                        <div class="Stats-module_statistic__fr8JZ" id="percentage"></div>
+                        <div class="Stats-module_label__pLAui">Win %</div>
+                    </div>
+                    <div class="Stats-module_statisticContainer__XORTW">
+                        <div class="Stats-module_statistic__fr8JZ" id="curStreak"></div>
+                        <div class="Stats-module_label__pLAui">Current Streak</div>
+                    </div><div class="Stats-module_statisticContainer__XORTW">
+                        <div class="Stats-module_statistic__fr8JZ" id="maxStreak"></div>
+                        <div class="Stats-module_label__pLAui">Max Streak</div>
+                    </div>
+                </div>
+                <h1>Guess Distribution</h1>
+                <div class="Stats-module_guessDistribution__J8Int">
+                    <div class="Stats-module_graphContainer__BlVFU">
+                        <div class="Stats-module_guess__3MeYM">1</div>
+                        <div class="Stats-module_graph__l2LGn">
+                            <div class="Stats-module_graphBar__TvsIP" id="one">
+                                <div class="Stats-module_numGuesses__aB7UF" id="numOne"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Stats-module_graphContainer__BlVFU">
+                        <div class="Stats-module_guess__3MeYM">2</div>
+                        <div class="Stats-module_graph__l2LGn">
+                            <div class="Stats-module_graphBar__TvsIP Stats-module_alignRight__29Xhl" id="two">
+                                <div class="Stats-module_numGuesses__aB7UF" id="numTwo"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Stats-module_graphContainer__BlVFU">
+                        <div class="Stats-module_guess__3MeYM">3</div>
+                        <div class="Stats-module_graph__l2LGn">
+                            <div class="Stats-module_graphBar__TvsIP Stats-module_alignRight__29Xhl" id="three">
+                                <div class="Stats-module_numGuesses__aB7UF" id="numThree"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Stats-module_graphContainer__BlVFU">
+                        <div class="Stats-module_guess__3MeYM">4</div>
+                        <div class="Stats-module_graph__l2LGn">
+                            <div class="Stats-module_graphBar__TvsIP Stats-module_alignRight__29Xhl" id="four">
+                                <div class="Stats-module_numGuesses__aB7UF" id="numFour"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Stats-module_graphContainer__BlVFU">
+                        <div class="Stats-module_guess__3MeYM">5</div>
+                        <div class="Stats-module_graph__l2LGn">
+                            <div class="Stats-module_graphBar__TvsIP Stats-module_alignRight__29Xhl" id="five">
+                                <div class="Stats-module_numGuesses__aB7UF" id="numFive"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Stats-module_graphContainer__BlVFU">
+                        <div class="Stats-module_guess__3MeYM">6</div>
+                        <div class="Stats-module_graph__l2LGn">
+                            <div class="Stats-module_graphBar__TvsIP Stats-module_alignRight__29Xhl" id="six">
+                                <div class="Stats-module_numGuesses__aB7UF" id="numSix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="Modal-module_closeIcon__b4z74" onclick="showStats()">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="game-icon" data-testid="icon-close">
+                        <path fill="#ffffff" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
     </div>
+
 </div>
 <script type="text/javascript">
     data_from_django = {{ todays_word|safe }};
     dictionary_from_django = {{ word_dictionary|safe }};
     guessed_words_from_django = {{ guessed_words|safe }};
+    oneWins = {{ oneWins|safe }};
+    twoWins = {{ twoWins|safe }};
+    threeWins = {{ threeWins|safe }};
+    fourWins = {{ fourWins|safe }};
+    fiveWins = {{ fiveWins|safe }};
+    sixWins = {{ sixWins|safe }};
+    played = {{ played|safe }};
+    losses = {{ losses|safe }};
+    curStreak = {{ curStreak|safe }};
+    maxStreak = {{ maxStreak|safe }};
+    
+
+function showStats() {
+  var stats = document.getElementById("stats")
+  if (stats.style.display === "none") {
+    stats.style.display = "flex";
+  } else {
+    stats.style.display = "none";
+  }
+}
+
+var perfEntries = performance.getEntriesByType("navigation");
+
+if (perfEntries[0].type === "back_forward") {
+    location.reload(true);
+}
 </script>
 
 <script src="{% static 'js/main.js' %}"></script>

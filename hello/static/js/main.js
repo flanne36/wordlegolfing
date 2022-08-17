@@ -15,12 +15,129 @@ document.addEventListener("DOMContentLoaded", () => {
   const messageDisplay = document.querySelector('.message-container')
 
   addDjangoGuessedWords();
+  stats();
 
   console.log(word);
-  console.log(djangoGuessedWords);
-  console.log(guessedWords);
-  console.log(availableSpace);
-  console.log(guessedWordCount);
+
+  function updatedstats() {
+    if(guessedWordCount == 1) {
+      oneWins++;
+    } else if(guessedWordCount == 2) {
+      twoWins++;
+    } else if(guessedWordCount == 3) {
+      threeWins++;
+    } else if(guessedWordCount == 4) {
+      fourWins++;
+    } else if(guessedWordCount == 5) {
+      fiveWins++;
+    } else if(guessedWordCount == 6) {
+      sixWins++;
+    } else{
+      losses++;
+      curStreak = 0;
+    }
+    if(guessedWordCount < 7) {
+      curStreak++;
+      if(curStreak > maxStreak) {
+        maxStreak = curStreak;
+      }
+    }
+    
+    played++;
+    stats();
+  }
+
+  function stats() {
+    document.getElementById("numOne").innerHTML = oneWins;
+    document.getElementById("numTwo").innerHTML = twoWins;
+    document.getElementById("numThree").innerHTML = threeWins;
+    document.getElementById("numFour").innerHTML = fourWins;
+    document.getElementById("numFive").innerHTML = fiveWins;
+    document.getElementById("numSix").innerHTML = sixWins;
+    document.getElementById("played").innerHTML = played;
+    document.getElementById("curStreak").innerHTML = curStreak;
+    document.getElementById("maxStreak").innerHTML = maxStreak;
+
+    var percentage;
+    if(losses == 0) {
+      percentage = 100;
+    } else {
+      percentage = Math.round(((played - losses) / played) * 100);
+    }
+
+    var max = oneWins;
+    if(twoWins > max) {
+      max = twoWins;
+    }
+    if(threeWins > max) {
+      max = threeWins;
+    }
+    if(fourWins > max) {
+      max = fourWins;
+    }
+    if(fiveWins > max) {
+      max = fiveWins;
+    }
+    if(sixWins > max) {
+      max = sixWins;
+    }
+    var onePercent;
+    var twoPercent;
+    var threePercent;
+    var fourPercent;
+    var fivePercent;
+    var sixPercent;
+
+    if(max == 0){
+      onePercent = 7;
+      twoPercent = 7;
+      threePercent = 7;
+      fourPercent = 7;
+      fivePercent = 7;
+      sixPercent = 7;
+      percentage = 0;
+    } else {
+      onePercent = oneWins / max * 100;
+      if(onePercent < 7 || onePercent == 0) {
+        onePercent = 7;
+      }
+      twoPercent = twoWins / max * 100;
+      if(twoPercent < 7){
+        twoPercent = 7;
+      }
+      threePercent = threeWins / max * 100;
+      if(threePercent < 7){
+        threePercent = 7;
+      }
+      fourPercent = fourWins / max * 100;
+      if(fourPercent < 7){
+        fourPercent = 7;
+      }
+      fivePercent = fiveWins / max * 100;
+      if(fivePercent < 7){
+        fivePercent = 7;
+      }
+      sixPercent = sixWins / max * 100;
+      if(sixPercent < 7){
+        sixPercent = 7;
+      }
+      
+    }
+    document.getElementById("percentage").innerHTML = percentage;
+    
+    var one = document.getElementById("one");
+    one.style.width = onePercent + "%";
+    var two = document.getElementById("two");
+    two.style.width = twoPercent + "%";
+    var three = document.getElementById("three");
+    three.style.width = threePercent + "%";
+    var four = document.getElementById("four");
+    four.style.width = fourPercent + "%";
+    var five = document.getElementById("five");
+    five.style.width = fivePercent + "%";
+    var six = document.getElementById("six");
+    six.style.width = sixPercent + "%";
+  }
 
   const keys = document.querySelectorAll(".keyboard-row button");
 
@@ -76,14 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     guessedWordCount++;
 
-    if (currentWord === word) {
-      showMessage("You guessed the word!");
-    }
-    
-    if (guessedWords.length === 6) {
-      showMessage(`You lost! The word is ${word}.`);
-      guessedWordCount++;
-    }
+  
 
     guessedWords.push([]);
   }
@@ -201,18 +311,19 @@ document.addEventListener("DOMContentLoaded", () => {
       guessedWordCount++;
 
       if (currentWord === word) {
+        updatedstats();
         saveCorrectAnswer();
         showMessage("You guessed the word!");
-      }
-      
-      if (guessedWords.length === 6 && currentWord !== word) {
+      }else if (guessedWords.length === 6 && currentWord !== word) {
         guessedWordCount++;
+        updatedstats();
         saveCorrectAnswer();
         showMessage(`You lost! The word is ${word}.`);
-      }
 
-      saveGuess();
-      guessedWords.push([]);
+      }else {
+        saveGuess();
+        guessedWords.push([]);
+      }
       
 
     } else {
@@ -239,10 +350,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function saveCorrectAnswer() {
+    const currentWordArr = getCurrentWordArr();
+    const currentWord = currentWordArr.join("");
+    const w = JSON.stringify(currentWord);
     $.ajax({
       url: "/game/stats/",
       type: "POST",
-      data: JSON.stringify(guessedWordCount)
+      data: {wordCount : JSON.stringify(guessedWordCount), word : w}
     });
   }
 
@@ -279,10 +393,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const letter = target.getAttribute("data-key");
       if (letter === "enter") {
         handleSubmitWord();
-
-        console.log(guessedWords);
-        console.log(availableSpace);
-        console.log(guessedWordCount);
         return;
       }
 

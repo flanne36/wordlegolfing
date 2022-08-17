@@ -3,6 +3,7 @@ from email.policy import default
 from urllib import request
 from django.shortcuts import render, redirect
 from .models import *
+from accounts.models import Profile
 import datetime
 from django.contrib.auth.decorators import login_required
 import json
@@ -23,9 +24,6 @@ def home(request):
     for word in word_dictionary:
         dictionary.append(word.word)
     js_data2 = json.dumps(dictionary)
-
-
-
     guessed_words = []
     getscores = lookup_score(request.user)
     if getscores is not None:
@@ -51,34 +49,79 @@ def home(request):
             getscores.guess6 = ''
             getscores.save()
 
+    stats = lookup_profile(request.user)
+    if stats is None:
+        stats = Profile()
+        stats.user = request.user
+        stats.save()
+    played = stats.played
+    losses = stats.losses
+    if stats.losses == 0:
+        percentage = 100
+    else:
+        percentage = int(((float(played) - float(stats.losses)) / float(played)) * 100)
+    curStreak = stats.current_streak
+    maxStreak = stats.max_streak
+    oneWins = stats.one_wins
+    twoWins = stats.two_wins
+    threeWins = stats.three_wins
+    fourWins = stats.four_wins
+    fiveWins = stats.five_wins
+    sixWins = stats.six_wins
+
     context = {
         'todays_word' : js_data,
         'word_dictionary' : js_data2,
         'guessed_words' : guessed_words,
+        'played' : played,
+        'percentage' : percentage,
+        'losses' : losses,
+        'curStreak' : curStreak,
+        'maxStreak' : maxStreak,
+        'oneWins' : oneWins,
+        'twoWins' : twoWins,
+        'threeWins' : threeWins,
+        'fourWins' : fourWins,
+        'fiveWins' : fiveWins,
+        'sixWins' : sixWins,
     }
     return render(request, 'home.html', context=context)
 
 @csrf_exempt
 @login_required(login_url='login')
 def stats(request):
-    result = request.body
-    score = json.loads(result)
+    score = request.POST.get('wordCount')
+    word = request.POST.get('word')
+    word = word.replace('"', '')
     saveScore = lookup_score(request.user)
     start = datetime.datetime(2022, 8, 1,0,0,0)
     today = datetime.datetime.now()
     if saveScore is None:
         saveScore = ScoreBoard()
         saveScore.user = request.user
-        saveScore.day = (today - start).days
+        saveScore.day = 0
+        saveScore.startday = (today - start).days
         saveScore.day1 = int(score) - 4
         saveScore.totalscore = int(score) - 4
+        saveScore.guess1 = word
         saveScore.save()
     else:
-        day = saveScore.day
-        print(day)
+        day = (today - start).days - saveScore.startday
+        if saveScore.guess1 == '':
+            saveScore.guess1 = word
+        elif saveScore.guess2 == '':
+            saveScore.guess2 = word
+        elif saveScore.guess3 == '':
+            saveScore.guess3 = word
+        elif saveScore.guess4 == '':
+            saveScore.guess4 = word
+        elif saveScore.guess5 == '':
+            saveScore.guess5 = word
+        elif saveScore.guess6 == '':
+            saveScore.guess6 = word
+
         match day:
             case 0:
-                print('test')
                 saveScore.day1 = int(score) - 4
                 saveScore.totalscore = saveScore.totalscore + saveScore.day1
                 saveScore.day = day
@@ -169,6 +212,34 @@ def stats(request):
                 saveScore.day = day
                 saveScore.save()
 
+    profile = lookup_profile(request.user)
+    if profile is None:
+        profile = Profile()
+        profile.user = request.user
+    profile.played = profile.played + 1
+    if int(score) > 6:
+        profile.losses = profile.losses + 1
+        profile.current_streak = 0
+    else:
+        profile.current_streak = profile.current_streak + 1
+        if profile.current_streak > profile.max_streak:
+            profile.max_streak = profile.current_streak
+        match(int(score)):
+            case 1:
+                profile.one_wins = profile.one_wins + 1
+            case 2:
+                profile.two_wins = profile.two_wins + 1
+            case 3:
+                profile.three_wins = profile.three_wins + 1
+            case 4:
+                profile.four_wins = profile.four_wins + 1
+            case 5:
+                profile.five_wins = profile.five_wins + 1
+            case 6:
+                profile.six_wins = profile.six_wins + 1
+            
+    profile.save()
+
     return HttpResponse('OK')
 
 
@@ -176,6 +247,13 @@ def lookup_score(user):
     try:
         score = ScoreBoard.objects.all().filter(user=user).get()
         return score
+    except ObjectDoesNotExist:
+        return None
+
+def lookup_profile(user):
+    try:
+        profile = Profile.objects.all().filter(user=user).get()
+        return profile
     except ObjectDoesNotExist:
         return None
 

@@ -226,3 +226,152 @@ header {
   justify-content: center;
   font-weight: bold;
 }
+
+.Modal-module_modalOverlay__81ZCi {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2000;
+}
+.Modal-module_content__s8qUZ {
+  position: relative;
+  border-radius: 8px;
+  border: 1px solid #1a1a1b;
+  background-color: #121213;
+  color: #ffffff;
+  box-shadow: 0 4px 23px 0 rgb(0 0 0 / 20%);
+  width: 90%;
+  max-height: 100%;
+  overflow-y: auto;
+  max-width: 500px;
+  padding: 16px;
+  box-sizing: border-box;
+  z-index: 2100;
+}
+.Stats-module_gameStats__ZP1aW {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 16px;
+}
+.Stats-module_gameStats__ZP1aW .Stats-module_statisticsHeading__9B0IG {
+  line-height: 20px;
+  margin-top: 0;
+  margin-bottom: 4px;
+  letter-spacing: 0.05em;
+}
+
+.Stats-module_statistics__Hke7Z {
+  display: flex;
+}
+
+.Stats-module_gameStats__ZP1aW h1 {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 4px;
+  line-height: 18px;
+  margin-top: 12px;
+}
+
+h1 {
+  display: block;
+  font-size: 2em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+.Stats-module_statisticContainer__XORTW {
+  flex: 1;
+  margin-left: 12px;
+}
+
+.Stats-module_statisticContainer__XORTW .Stats-module_statistic__fr8JZ {
+  font-size: 34px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  letter-spacing: 0.05em;
+  font-variant-numeric: proportional-nums;
+  line-height: 36px;
+}
+.Stats-module_statisticContainer__XORTW .Stats-module_label__pLAui {
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 14px;
+  letter-spacing: 0.1em;
+}
+
+.Modal-module_closeIcon__b4z74 {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+.Stats-module_guessDistribution__J8Int {
+  width: 80%;
+}
+
+.Stats-module_graphContainer__BlVFU {
+  width: 100%;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  padding-bottom: 4px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.Stats-module_guess__3MeYM {
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.1em;
+}
+
+.Stats-module_graphContainer__BlVFU .Stats-module_graph__l2LGn {
+  width: 100%;
+  height: 100%;
+  padding-left: 4px;
+}
+
+.Stats-module_graphContainer__BlVFU .Stats-module_graph__l2LGn .Stats-module_graphBar__TvsIP {
+  height: 100%;
+  width: 0%;
+  position: relative;
+  background-color: #3a3a3c;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 5px;
+  align-items: center;
+}
+
+.Stats-module_graphContainer__BlVFU .Stats-module_graph__l2LGn .Stats-module_numGuesses__aB7UF {
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 18px;
+}
+
