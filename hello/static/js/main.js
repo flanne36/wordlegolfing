@@ -425,4 +425,20 @@ document.addEventListener("DOMContentLoaded", () => {
       updateGuessedWords(letter);
     };
   }
+
+  document.addEventListener("keydown", ( event ) => {
+    var name = event.key;
+    var code = event.keyCode;
+    if (name === "Enter") {
+      handleSubmitWord();
+      return;
+    }
+    if (name === "Backspace") {
+      handleDeleteLetter();
+      return;
+    }
+    if (/^[a-zA-Z]$/.test(name)) {
+      updateGuessedWords(name.toLocaleLowerCase());
+    }
+  }, false);
 });

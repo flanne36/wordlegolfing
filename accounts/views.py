@@ -71,7 +71,6 @@ def scoreboard(request):
                     score[0] = score[0] + "T"
                 scoretwo[0] = score[0]
 
-    print(scores[1][20])
 
     context = {
         'scores': scores
