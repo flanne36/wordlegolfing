@@ -313,13 +313,14 @@ document.addEventListener("DOMContentLoaded", () => {
       if (currentWord === word) {
         updatedstats();
         saveCorrectAnswer();
-        showMessage("You guessed the word!");
+        showCorrectMessage(guessedWordCount);
+        setTimeout(() => {showStats();}, 2000);
       }else if (guessedWords.length === 6 && currentWord !== word) {
         guessedWordCount++;
         updatedstats();
         saveCorrectAnswer();
         showMessage(`You lost! The word is ${word}.`);
-
+        setTimeout(() => {showStats();}, 2000);
       }else {
         saveGuess();
         guessedWords.push([]);
@@ -330,6 +331,26 @@ document.addEventListener("DOMContentLoaded", () => {
       showMessage("Not in word list");
     }
   }
+
+  const showCorrectMessage = (guessedWordCount) => {
+    const messageEl = document.createElement("p");
+    if(guessedWordCount === 1){
+      messageEl.textContent = "Hole In One!";
+    }else if(guessedWordCount === 2){
+      messageEl.textContent = "Eagle!";
+    }else if(guessedWordCount === 3){
+      messageEl.textContent = "Birdie!";
+    }else if(guessedWordCount === 4){
+      messageEl.textContent = "Par!";
+    }else if(guessedWordCount === 5){
+      messageEl.textContent = "Bogey!";
+    }else if(guessedWordCount === 6){
+      messageEl.textContent = "Double Bogey!";
+    }
+    messageDisplay.append(messageEl);
+    setTimeout(() => {messageDisplay.removeChild(messageEl)}, 2000);
+  }
+
 
   const showMessage = (message) => {
     const messageEl = document.createElement("p");

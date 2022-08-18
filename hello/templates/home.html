@@ -94,8 +94,8 @@
             </button>
             </div>
         </div>
-        <div id="stats" style="display:none" class="Modal-module_modalOverlay__81ZCi Modal-module_enableAuth__SR682" role="button">
-            <div class="Modal-module_content__s8qUZ Modal-module_enableAuth__SR682">
+        <div id="stats" style="display:none" class="Modal-module_modalOverlay__81ZCi Modal-module_enableAuth__SR682" role="button" onclick="showStats()">
+            <div class="Modal-module_content__s8qUZ Modal-module_enableAuth__SR682" onclick="showStats()">
                 <div data-testid="authContainer" class="Stats-module_gameStats__ZP1aW">
                     <h1 class="Stats-module_statisticsHeading__9B0IG">Statistics</h1>
                     <div class="Stats-module_statistics__Hke7Z">
@@ -166,7 +166,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="Modal-module_closeIcon__b4z74" onclick="showStats()">
+                <div class="Modal-module_closeIcon__b4z74" onclick="showStats()" >
                     <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="game-icon" data-testid="icon-close">
                         <path fill="#ffffff" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
                     </svg>
