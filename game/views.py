@@ -273,7 +273,82 @@ def saveguess(request):
         saveguess.guess1 = word
         saveguess.save()
     else:
-        saveguess.day = (today - start).days - saveguess.startday
+        day = (today - start).days - saveguess.startday
+        if day-1 != saveguess.day:
+            misseddays = day - 1 - saveguess.day
+            for x in range(misseddays):
+                inputday = day - 1 - x
+                match day:
+                    case 1:
+                        saveguess.day1 = 4
+                        saveguess.totalscore = saveguess.totalscore + 4
+                        saveguess.save()
+                    case 2:
+                        saveguess.day2 = 4
+                        saveguess.totalscore = saveguess.totalscore + 4
+                        saveguess.save()
+                    case 3:
+                        saveguess.day3 = 4
+                        saveguess.totalscore = saveguess.totalscore + 4
+                        saveguess.save()
+                    case 4:
+                        saveguess.day4 = 4
+                        saveguess.totalscore = saveguess.totalscore + 4
+                        saveguess.save()
+                    case 5:
+                        saveguess.day5 = 4
+                        saveguess.totalscore = saveguess.totalscore + 4
+                        saveguess.save()
+                    case 6:
+                        saveguess.day6 = 4
+                        saveguess.totalscore = saveguess.totalscore + 4
+                        saveguess.save()
+                    case 7:
+                        saveguess.day7 = 4
+                        saveguess.totalscore = saveguess.totalscore + 4
+                        saveguess.save()
+                    case 8:
+                        saveguess.day8 = 4
+                        saveguess.totalscore = saveguess.totalscore + 4
+                        saveguess.save()
+                    case 9:
+                        saveguess.day9 = 4
+                        saveguess.totalscore = saveguess.totalscore + 4
+                        saveguess.save()
+                    case 10:
+                        saveguess.day10 = 4
+                        saveguess.totalscore = saveguess.totalscore + 4
+                        saveguess.save()
+                    case 11:
+                        saveguess.day11 = 4
+                        saveguess.totalscore = saveguess.totalscore + 4
+                        saveguess.save()
+                    case 12:
+                        saveguess.day12 = 4
+                        saveguess.totalscore = saveguess.totalscore + 4
+                        saveguess.save()
+                    case 13:
+                        saveguess.day13 = 4
+                        saveguess.totalscore = saveguess.totalscore + 4
+                        saveguess.save()
+                    case 14:
+                        saveguess.day14 = 4
+                        saveguess.totalscore = saveguess.totalscore + 4
+                        saveguess.save()
+                    case 15:
+                        saveguess.day15 = 4
+                        saveguess.totalscore = saveguess.totalscore + 4
+                        saveguess.save()
+                    case 16:
+                        saveguess.day16 = 4
+                        saveguess.totalscore = saveguess.totalscore + 4
+                        saveguess.save()
+                    case 17:
+                        saveguess.day17 = 4
+                        saveguess.totalscore = saveguess.totalscore + 4
+                        saveguess.save()
+        
+        saveguess.day = day
         saveguess.save()
         if saveguess.guess1 == '':
             saveguess.guess1 = word
