@@ -375,3 +375,48 @@ h1 {
   line-height: 18px;
 }
 
+@media (max-width: 499px){
+  .AuthCTA-module_buttonsContainer__y0b1J {
+      width: 70%;
+      margin: 0 auto;
+  }
+}
+.AuthCTA-module_buttonsContainer__y0b1J {
+    text-align: center;
+    margin-top: 10px;
+    border-top: 1px solid #424242;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+    width: 95%;
+}
+
+.AuthCTA-module_buttonsContainer__y0b1J .AuthCTA-module_loginButton__0FcEr {
+  background-color: #121213;
+  color: var(--color-tone-1);
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 14px;
+  border: 1px solid #ffffff;
+  border-radius: 55px;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  padding: 14px 12px;
+  justify-content: center;
+}
+
+.AuthCTA-module_buttonsContainer__y0b1J .AuthCTA-module_loginButton__0FcEr > a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.Stats-module_ctaContainer__WSxUG {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
