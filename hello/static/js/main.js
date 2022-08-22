@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   addDjangoGuessedWords();
   stats();
 
-  //console.log(word);
+  console.log(word);
 
   function updatedstats() {
     if(guessedWordCount == 1) {

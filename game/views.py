@@ -122,93 +122,147 @@ def stats(request):
 
         match day:
             case 0:
-                saveScore.day1 = int(score) - 4
-                saveScore.totalscore = saveScore.totalscore + saveScore.day1
+                if(int(score)-4 != 0):
+                    saveScore.day1 = int(score) - 4
+                else:
+                    saveScore.day1 = 'E'
+                saveScore.totalscore = saveScore.totalscore + int(score) - 4
                 saveScore.day = day
                 saveScore.save()
             case 1:
-                saveScore.day2 = int(score) - 4
-                saveScore.totalscore = saveScore.totalscore + int(saveScore.day2)
+                if(int(score)-4 != 0):
+                    saveScore.day2 = int(score) - 4
+                else:
+                    saveScore.day2 = 'E'
+                saveScore.totalscore = saveScore.totalscore + int(score) - 4
                 saveScore.day = day
                 saveScore.save()
             case 2:
-                saveScore.day3 = int(score) - 4
-                saveScore.totalscore = saveScore.totalscore + int(saveScore.day3)
+                if(int(score)-4 != 0):
+                    saveScore.day3 = int(score) - 4
+                else:
+                    saveScore.day3 = 'E'
+                saveScore.totalscore = saveScore.totalscore + int(score) - 4
                 saveScore.day = day
                 saveScore.save()
             case 3:
-                saveScore.day4 = int(score) - 4
-                saveScore.totalscore = saveScore.totalscore + int(saveScore.day4)
+                if(int(score)-4 != 0):
+                    saveScore.day4 = int(score) - 4
+                else:
+                    saveScore.day4 = 'E'
+                saveScore.totalscore = saveScore.totalscore + int(score) - 4
                 saveScore.day = day
                 saveScore.save()
             case 4:
-                saveScore.day5 = int(score) - 4
-                saveScore.totalscore = saveScore.totalscore + int(saveScore.day5)
+                if(int(score)-4 != 0):
+                    saveScore.day5 = int(score) - 4
+                else:
+                    saveScore.day5 = 'E'
+                saveScore.totalscore = saveScore.totalscore + int(score) - 4
                 saveScore.day = day
                 saveScore.save()
             case 5:
-                saveScore.day6 = int(score) - 4
-                saveScore.totalscore = saveScore.totalscore + int(saveScore.day6)
+                if(int(score)-4 != 0):
+                    saveScore.day6 = int(score) - 4
+                else:
+                    saveScore.day6 = 'E'
+                saveScore.totalscore = saveScore.totalscore + int(score) - 4
                 saveScore.day = day
                 saveScore.save()
             case 6:
-                saveScore.day7 = int(score) - 4
-                saveScore.totalscore = saveScore.totalscore + int(saveScore.day7)
+                if(int(score)-4 != 0):
+                    saveScore.day7 = int(score) - 4
+                else:
+                    saveScore.day7 = 'E'
+                saveScore.totalscore = saveScore.totalscore + int(score) - 4
                 saveScore.day = day
                 saveScore.save()
             case 7:
-                saveScore.day8 = int(score) - 4
-                saveScore.totalscore = saveScore.totalscore + int(saveScore.day8)
+                if(int(score)-4 != 0):
+                    saveScore.day8 = int(score) - 4
+                else:
+                    saveScore.day8 = 'E'
+                saveScore.totalscore = saveScore.totalscore + int(score) - 4
                 saveScore.day = day
                 saveScore.save()
             case 8:
-                saveScore.day9 = int(score) - 4
-                saveScore.totalscore = saveScore.totalscore + int(saveScore.day9)
+                if(int(score)-4 != 0):
+                    saveScore.day9 = int(score) - 4
+                else:
+                    saveScore.day9 = 'E'
+                saveScore.totalscore = saveScore.totalscore + int(score) - 4
                 saveScore.day = day
                 saveScore.save()
             case 9:
-                saveScore.day10 = int(score) - 4
-                saveScore.totalscore = saveScore.totalscore + int(saveScore.day10)
+                if(int(score)-4 != 0):
+                    saveScore.day10 = int(score) - 4
+                else:
+                    saveScore.day10 = 'E'
+                saveScore.totalscore = saveScore.totalscore + int(score) - 4
                 saveScore.day = day
                 saveScore.save()
             case 10:
-                saveScore.day11 = int(score) - 4
-                saveScore.totalscore = saveScore.totalscore + int(saveScore.day11)
+                if(int(score)-4 != 0):
+                    saveScore.day11 = int(score) - 4
+                else:
+                    saveScore.day11 = 'E'
+                saveScore.totalscore = saveScore.totalscore + int(score) - 4
                 saveScore.day = day
                 saveScore.save()
             case 11:
-                saveScore.day12 = int(score) - 4
-                saveScore.totalscore = saveScore.totalscore + int(saveScore.day12)
+                if(int(score)-4 != 0):
+                    saveScore.day12 = int(score) - 4
+                else:
+                    saveScore.day12 = 'E'
+                saveScore.totalscore = saveScore.totalscore + int(score) - 4
                 saveScore.day = day
                 saveScore.save()
             case 12:
-                saveScore.day13 = int(score) - 4
-                saveScore.totalscore = saveScore.totalscore + int(saveScore.day13)
+                if(int(score)-4 != 0):
+                    saveScore.day13 = int(score) - 4
+                else:
+                    saveScore.day13 = 'E'
+                saveScore.totalscore = saveScore.totalscore + int(score) - 4
                 saveScore.day = day
                 saveScore.save()
             case 13:
-                saveScore.day14 = int(score) - 4
-                saveScore.totalscore = saveScore.totalscore + int(saveScore.day14)
+                if(int(score)-4 != 0):
+                    saveScore.day14 = int(score) - 4
+                else:
+                    saveScore.day14 = 'E'
+                saveScore.totalscore = saveScore.totalscore + int(score) - 4
                 saveScore.day = day
                 saveScore.save()
             case 14:
-                saveScore.day15 = int(score) - 4
-                saveScore.totalscore = saveScore.totalscore + int(saveScore.day15)
+                if(int(score)-4 != 0):
+                    saveScore.day15 = int(score) - 4
+                else:
+                    saveScore.day15 = 'E'
+                saveScore.totalscore = saveScore.totalscore + int(score) - 4
                 saveScore.day = day
                 saveScore.save()
             case 15:
-                saveScore.day16 = int(score) - 4
-                saveScore.totalscore = saveScore.totalscore + int(saveScore.day16)
+                if(int(score)-4 != 0):
+                    saveScore.day16 = int(score) - 4
+                else:
+                    saveScore.day16 = 'E'
+                saveScore.totalscore = saveScore.totalscore + int(score) - 4
                 saveScore.day = day
                 saveScore.save()
             case 16:
-                saveScore.day17 = int(score) - 4
-                saveScore.totalscore = saveScore.totalscore + int(saveScore.day17)
+                if(int(score)-4 != 0):
+                    saveScore.day17 = int(score) - 4
+                else:
+                    saveScore.day17 = 'E'
+                saveScore.totalscore = saveScore.totalscore + int(score) - 4
                 saveScore.day = day
                 saveScore.save()
             case 17:
-                saveScore.day18 = int(score) - 4
-                saveScore.totalscore = saveScore.totalscore + int(saveScore.day18)
+                if(int(score)-4 != 0):
+                    saveScore.day18 = int(score) - 4
+                else:
+                    saveScore.day18 = 'E'
+                saveScore.totalscore = saveScore.totalscore + int(score) - 4
                 saveScore.day = day
                 saveScore.save()
 
