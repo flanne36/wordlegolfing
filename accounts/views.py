@@ -59,14 +59,14 @@ def scoreboard(request):
     standing = "1"
     for score in django_scores:
         scores.append(
-            [standing, score.user.username, score.day1, score.day2, score.day3, score.day4, score.day5, score.day6, score.day7,
+            [standing, score.user.username, score.totalscore if score.totalscore != 0 else 'E', score.day1, score.day2, score.day3, score.day4, score.day5, score.day6, score.day7,
              score.day8, score.day9,
              score.day10, score.day11, score.day12, score.day13, score.day14, score.day15, score.day16, score.day17,
-             score.day18, score.totalscore if score.totalscore != 0 else 'E'])
+             score.day18])
         standing = str(int(standing) + 1)
     for score in scores:
         for scoretwo in scores:
-            if score[20] == scoretwo[20] and score[1] != scoretwo[1]:
+            if score[3] == scoretwo[3] and score[1] != scoretwo[1]:
                 if "T" not in score[0]:
                     score[0] = score[0] + "T"
                 scoretwo[0] = score[0]
