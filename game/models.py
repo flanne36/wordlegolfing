@@ -8,6 +8,11 @@ class Wordsdata(models.Model):
     word = models.TextField(null=True)
     id = models.TextField(primary_key=True)
 
+class NewWordsdata(models.Model):
+    word = models.TextField(null=True)
+    id = models.TextField(primary_key=True)
+    
+
 
 class ScoreBoard(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
