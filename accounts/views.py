@@ -62,7 +62,7 @@ def scoreboard(request):
             [standing, score.user.username, score.day1, score.day2, score.day3, score.day4, score.day5, score.day6, score.day7,
              score.day8, score.day9,
              score.day10, score.day11, score.day12, score.day13, score.day14, score.day15, score.day16, score.day17,
-             score.day18, score.totalscore])
+             score.day18, score.totalscore if score.totalscore != 0 else 'E'])
         standing = str(int(standing) + 1)
     for score in scores:
         for scoretwo in scores:
