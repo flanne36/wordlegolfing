@@ -66,7 +66,7 @@ def scoreboard(request):
         standing = str(int(standing) + 1)
     for score in scores:
         for scoretwo in scores:
-            if score[2] == scoretwo[2] and score[1] != scoretwo[1]:
+            if score[1] == scoretwo[1] and score[2] != scoretwo[2]:
                 if "T" not in score[0]:
                     score[0] = score[0] + "T"
                 scoretwo[0] = score[0]
