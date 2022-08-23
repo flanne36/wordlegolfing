@@ -82,7 +82,7 @@ def scoreboard(request):
         for scoretwo in scores:
             if score[1] == scoretwo[1] and score[2] != scoretwo[2]:
                 if "T" not in score[0]:
-                    score[0] = score[0] + "T"
+                    score[0] = score[0] + " T"
                 scoretwo[0] = score[0]
    
 
