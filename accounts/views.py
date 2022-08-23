@@ -64,13 +64,27 @@ def scoreboard(request):
              score.day10, score.day11, score.day12, score.day13, score.day14, score.day15, score.day16, score.day17,
              score.day18])
         standing = str(int(standing) + 1)
+
+    for score in scores:
+        if score[0] == '1':
+            score[0] = score[0] + 'st'
+        elif score[0] == '2':
+            score[0] = score[0] + 'nd'
+        elif score[0] == '3':
+            score[0] = score[0] + 'rd'
+        else:
+            score[0] = score[0] + 'th'
+
+            
+            
+
     for score in scores:
         for scoretwo in scores:
             if score[1] == scoretwo[1] and score[2] != scoretwo[2]:
                 if "T" not in score[0]:
                     score[0] = score[0] + "T"
                 scoretwo[0] = score[0]
-
+   
 
     context = {
         'scores': scores
