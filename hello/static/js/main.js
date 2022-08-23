@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentWord = currentWordArr.join("");
 
     const firstLetterId = guessedWordCount * 5 + 1;
-    const interval = 200;
+    const interval = 300;
 
     const colorsChoice = getTileColor(currentWord);
 
