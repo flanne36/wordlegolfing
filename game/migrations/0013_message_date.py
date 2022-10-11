@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='message',
             name='date',
-            field=models.DateTimeField(auto_now_add=True, default="1"),
+            field=models.DateTimeField(auto_now_add=True, default=1),
             preserve_default=False,
         ),
     ]
