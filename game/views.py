@@ -18,7 +18,7 @@ import random
 # Create your views here.
 @login_required(login_url='login')
 def home(request):
-    start = datetime.datetime(2022, 8, 1,0,0,0)
+    start = datetime.datetime(2022, 9, 30,0,0,0)
     today = datetime.datetime.now()
     todays_index = (today - start).days
     todays_word = NewWordsdata.objects.get(id=todays_index)

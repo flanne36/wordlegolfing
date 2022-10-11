@@ -1,4 +1,6 @@
 
+from email.policy import default
+from unittest.util import _MAX_LENGTH
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -47,3 +49,7 @@ class ScoreBoard(models.Model):
     def __str__(self):
         return self.user.username
 
+class Message(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    message = models.CharField(max_length = 500)
+    date = models.DateTimeField(auto_now_add=True)

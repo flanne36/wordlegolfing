@@ -1,5 +1,7 @@
 from django.db import models
 
+from accounts.views import scoreboard
+
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField('auth.User', on_delete=models.CASCADE)

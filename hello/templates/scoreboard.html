@@ -5,8 +5,8 @@
 {% block title %} Player Stats {% endblock %}
 
 {% block content %}  
-<a href="{% url 'accounts:logout' %}">Logout</a>
-<table class="table table-condensed table-bordered">
+
+<table class="table table-condensed table-bordered scorecard">
     <thead>
         <tr class="success text-center">
             <th>Standings</th>
@@ -42,5 +42,90 @@
         {% endfor %}
     </tbody>
 </table>
+<div class="comments container mt-5 justify-content-center">
+    <form class="commentinput" method="POST" action="">
+        {% csrf_token %}
+        {{form.message}}
+        <div class="">
+            <input class="comment-button" type="submit" value="COMMENT">
+        </div>
+    </form>
+    <div class="container justify-content-center border-left border-right">
+        {% for chat in messages %}
+            <div class="d-flex justify-content-center py-2">
+                <div class="second py-2 px-2"> 
+                    <div class="d-flex justify-content-between py-1 pt-2">
+                        <div class="pull-left"><span class="text2">{{chat.user.first_name}}</span></div>
+                        <div class="pull-right"> <span class="text3">{{chat.date}}</span></div>
+                    </div>
+                    <span class="text1">{{chat.message}}</span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+
+.comment-button{
+    font-size: 11px;
+    background-color: #252525;
+    
+    color: #56575b;
+    border: 0 none;
+}
+
+.comment-input{
+    outline: 0;
+    border-width: 0 0 2px;
+    border-color: #828386;
+    background-color: #121213;
+    margin-bottom: 3px;
+    color: #828386;
+    font-size: 11px;
+}
+
+body {
+    background-color: #121213;
+    height: 100%;
+}
+th, tr {
+    color: #ffffff;
+    
+}
+
+.scorecard{
+}
+
+.comments{
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.second{
+	width: 350px;
+	background-color: white;
+	border-radius: 4px;
+}
+.text1{
+	font-size: 13px;
+    font-weight: 500;
+    color: #56575b;
+}
+.text2{
+	font-size: 13px;
+    font-weight: 500;
+    margin-left: 6px;
+    color: #56575b;
+}
+.text3{
+	font-size: 10px;
+    font-weight: 500;
+    margin-right: 4px;
+    color: #828386;
+
+}
+</style>
 
 {% endblock %}

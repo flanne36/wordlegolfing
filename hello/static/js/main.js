@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
   addDjangoGuessedWords();
   stats();
 
-  console.log(word);
 
   function updatedstats() {
     if(guessedWordCount == 1) {
@@ -156,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentWord = currentWordArr.join("");
 
     const firstLetterId = guessedWordCount * 5 + 1;
-    const interval = 300;
+    const interval = 200;
 
     const colorsChoice = getTileColor(currentWord);
 
