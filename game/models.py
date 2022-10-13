@@ -3,7 +3,7 @@ from email.policy import default
 from unittest.util import _MAX_LENGTH
 from django.contrib.auth.models import User
 from django.db import models
-
+from django.utils import timezone
 
 # Create your models here.
 class Wordsdata(models.Model):
@@ -52,4 +52,10 @@ class ScoreBoard(models.Model):
 class Message(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     message = models.CharField(max_length = 500)
-    date = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(editable=False)
+
+    def save(self, *args, **kwargs):
+        ''' On save, update timestamps '''
+        if not self.id:
+            self.created = timezone.now()
+        return super(User, self).save(*args, **kwargs)
